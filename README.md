@@ -137,7 +137,7 @@ Turn off the VM and clone it into the master and nodes.
   It should return something like the following.
   
     NAME              STATUS   ROLES    AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION    CONTAINER-RUNTIME
-    <your-hostname>   Ready    master   52m   v1.12.2   10.128.0.28   <none>        Ubuntu 18.04.1 LTS   4.15.0-1023-gcp   docker://18.6.1
+    <your-hostname>   Ready    master   52m   v1.24.0   192.168.1.115   <none>        Ubuntu 20.04.4 LTS   5.4.0-100-generic   containerd://1.5.9
     
   
   ### Configure the Kubernetes worker nodes.
