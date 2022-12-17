@@ -159,3 +159,4 @@ Turn off the VM and clone it into the master and nodes.
   https://learn.microsoft.com/en-us/sql/big-data-cluster/deploy-with-kubeadm?view=sql-server-ver15  
   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart  
   https://kubernetes.io/docs/home/  
+  https://habr.com/ru/post/530352/  
