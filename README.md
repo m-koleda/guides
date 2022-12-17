@@ -77,7 +77,10 @@ Turn off the VM and clone it into the master and nodes.
   1. Set the IP addresses. Master and worker nodes must be on the same subnetwork.
   
     sudo nano /etc/netplan/00-installer-config.yaml
-    sudo netplan apply
+    sudo netplan apply  
+    
+  ![image](https://user-images.githubusercontent.com/97964258/208241331-42529f41-c9d1-4229-a7c8-c5f3874db836.png)
+
     
   2. Change the `hostname` to `kube-master` or `kube-worker01`
   
