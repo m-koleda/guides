@@ -163,3 +163,4 @@ Turn off the VM and clone it into the master and nodes.
   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart  
   https://kubernetes.io/docs/home/  
   https://habr.com/ru/post/530352/  
+  https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
