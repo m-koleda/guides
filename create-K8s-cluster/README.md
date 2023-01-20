@@ -53,7 +53,7 @@ As a regular user with sudo privileges, open a bash terminal and run the followi
 
   3. Configure docker and Kubernetes prerequisites on the machine.
   
-    KUBE_DPKG_VERSION=1.24.0-00 #or your other target K8s version, which should be at least 1.13.
+    KUBE_DPKG_VERSION=1.23.0-00 #or your other target K8s version, which should be at least 1.13. Docker is removed in k8s version 1.24+. Please use containerd or other CRI.
     sudo apt-get update && \
     sudo apt-get install -y ebtables ethtool && \
     sudo apt-get install -y docker.io && \
@@ -66,6 +66,23 @@ As a regular user with sudo privileges, open a bash terminal and run the followi
     if [ "$VERSION_CODENAME" == "focal" ]; then sudo modprobe br_netfilter; fi
     
     sudo sysctl net.bridge.bridge-nf-call-iptables=1
+    
+  5. Change the Docker cgroup to systemd by editing the Docker service with the following command.  
+  
+    sudo nano /usr/lib/systemd/system/docker.service
+    
+  Modify this line  
+  
+    ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock  
+  
+  to  
+  
+    ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --exec-opt native.cgroupdriver=systemd
+    
+    #Restart the Docker service by running the following command
+    sudo systemctl daemon-reload
+    sudo systemctl restart docker
+    sudo kubeadm reset
     
 ### Create the master and worker nodes.
 Turn off the VM and clone it into the master and nodes.  
@@ -94,7 +111,7 @@ Turn off the VM and clone it into the master and nodes.
   
   1. Initialize the master using the following command.
   
-    sudo kubeadm init --pod-network-cidr=192.168.0.0/16
+    sudo kubeadm init --pod-network-cidr=192.168.2.0/16
     
   `Note:  
   If 192.168.0.0/16 is already in use within your network you must select a different pod network CIDR, replacing 192.168.0.0/16 in the above command.`
@@ -163,4 +180,6 @@ Turn off the VM and clone it into the master and nodes.
   https://projectcalico.docs.tigera.io/getting-started/kubernetes/quickstart  
   https://kubernetes.io/docs/home/  
   https://habr.com/ru/post/530352/  
-  https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/
+  https://kubernetes.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/  
+  https://stackoverflow.com/questions/54728254/kubernetes-kubeadm-init-fails-due-to-dial-tcp-127-0-0-110248-connect-connecti  
+  https://www.devopsschool.com/blog/how-to-change-the-cgroup-driver-from-cgroupfs-systemd-in-docker/  
