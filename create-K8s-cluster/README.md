@@ -131,7 +131,9 @@ Turn off the VM and clone it into the master and nodes.
   
     kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.5/manifests/tigera-operator.yaml
 
-  4. Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the [installation reference](https://projectcalico.docs.tigera.io/reference/installation/api).
+  4. Install Calico by creating the necessary custom resource. For more information on configuration options available in this manifest, see the [installation reference](https://projectcalico.docs.tigera.io/reference/installation/api).  
+  
+    kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml
   
   `Note: Before creating this manifest, read its contents and make sure its settings are correct for your environment. For example, you may need to change the default IP pool CIDR to match your pod network CIDR.`
   
