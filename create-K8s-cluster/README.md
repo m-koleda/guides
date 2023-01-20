@@ -67,23 +67,7 @@ As a regular user with sudo privileges, open a bash terminal and run the followi
     
     sudo sysctl net.bridge.bridge-nf-call-iptables=1
     
-  5. Change the Docker cgroup to systemd by editing the Docker service with the following command.  
-  
-    sudo nano /usr/lib/systemd/system/docker.service
-    
-  Modify this line  
-  
-    ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock  
-  
-  to  
-  
-    ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock --exec-opt native.cgroupdriver=systemd
-    
-    #Restart the Docker service by running the following command
-    sudo systemctl daemon-reload
-    sudo systemctl restart docker
-    sudo kubeadm reset
-    
+      
 ### Create the master and worker nodes.
 Turn off the VM and clone it into the master and nodes.  
   
@@ -176,6 +160,13 @@ Turn off the VM and clone it into the master and nodes.
   
   ### Congratulations! You now have a Kubernetes cluster with Calico!  
   The next step is to deploy an application on your own K8s cluster. Good luck!<br/><br/><br/><br/>
+  
+  * After machine reboot.  
+  
+    sudo systemctl restart containerd
+    sudo kubeadm reset
+    
+    
 
   In this guide I used materials:  
   https://learn.microsoft.com/en-us/sql/big-data-cluster/deploy-with-kubeadm?view=sql-server-ver15  
