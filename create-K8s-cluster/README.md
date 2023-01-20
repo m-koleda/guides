@@ -60,10 +60,10 @@ As a regular user with sudo privileges, open a bash terminal and run the followi
     sudo apt-get install -y apt-transport-https && \
     sudo apt-get install -y kubelet=$KUBE_DPKG_VERSION kubeadm=$KUBE_DPKG_VERSION kubectl=$KUBE_DPKG_VERSION
 
-  4. Set `net.bridge.bridge-nf-call-iptables=1`. On Ubuntu 18.04, the following commands first enable `br_netfilter`.
+  4. Set `net.bridge.bridge-nf-call-iptables=1`. On Ubuntu 20.04, the following commands first enable `br_netfilter`.
   
     . /etc/os-release
-    if [ "$VERSION_CODENAME" == "bionic" ]; then sudo modprobe br_netfilter; fi
+    if [ "$VERSION_CODENAME" == "focal" ]; then sudo modprobe br_netfilter; fi
     
     sudo sysctl net.bridge.bridge-nf-call-iptables=1
     
