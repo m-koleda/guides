@@ -1,4 +1,4 @@
-1. Установить docker + docker compose:
+install docker + docker compose:
   
         curl -fsSL http://get.docker.com -o get-docker.sh  
         sudo sh get-docker.sh  
